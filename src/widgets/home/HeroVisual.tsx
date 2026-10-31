@@ -1,7 +1,8 @@
 import React from 'react';
+import type { Product } from '../../types';
 
 interface HeroVisualProps {
-  onQuickAdd?: (product: any, size: string) => void;
+  onQuickAdd?: (product: Product, size: string) => void;
   onOpenCloserLook?: () => void;
 }
 

@@ -43,6 +43,20 @@ Run tests with `python -m unittest discover -s tests -v`. Test bridges are expli
 
 ## Host integration
 
+### Local Codex launcher
+
+When the Python FAgent coordinator or another host adapter is unavailable, the repository
+includes a direct launcher for the installed Codex CLI. It loads the selected manifest and
+prompt, runs from the project root, and passes the request to that role:
+
+```powershell
+.codex/run-agent.ps1 -Agent tech-lead -Request "Review Button.tsx and add a danger variant"
+```
+
+The launcher is a host bridge convenience, not a replacement for the full FAgent coordinator:
+it does not persist task boards, schedule independent tasks, or provide auditor/architect
+gates automatically. Those behaviors still require the coordinator described above.
+
 1. Use [frontend.entry.json](frontend.entry.json) and [architect.agent.json](architect.agent.json) for central frontend intake. This repository-specific format is not automatically loaded by Codex or Cursor. Without the runtime bridge, manually load `prompts/architect.md` for intake and use specialist definitions only for its assigned work; that manual workflow does not gain automatic scheduling.
 2. Give the agent access to the target Next.js repository and its applicable repository instructions.
 3. Supply a concrete feature, refactoring, or review task with observable acceptance criteria.

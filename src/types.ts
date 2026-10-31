@@ -46,6 +46,13 @@ export interface LookbookLook {
 
 export type Currency = 'USD' | 'EUR' | 'GBP' | 'JPY';
 
+export type ProductFilter = {
+  gender?: 'all' | 'men' | 'women';
+  collection?: string;
+  category?: string;
+  badge?: string;
+};
+
 export interface UserOrder {
   id: string;
   trackingCode: string;

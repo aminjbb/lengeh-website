@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Product } from '../../types';
+import type { Product, Currency } from '../../types';
 import { ALL_PRODUCTS } from '../../data/mockData';
 import { GarderobProductCard } from '../../features/garderob/ui/GarderobProductCard';
 import { FilterSortDrawer, SortOption } from '../../features/catalog-filter/ui/FilterSortDrawer';
@@ -13,7 +13,7 @@ interface ProductListPageProps {
   initialBadge?: string;
   onSelectProduct: (product: Product) => void;
   // Optional legacy props kept for type compatibility
-  currency?: any;
+  currency?: Currency;
   onBackToHome?: () => void;
   garderobIds?: string[];
   onToggleGarderob?: (product: Product) => void;

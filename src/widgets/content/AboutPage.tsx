@@ -1,8 +1,9 @@
 import React from 'react';
+import type { ProductFilter } from '../../types';
 
 interface AboutPageProps {
   onNavigateHome?: () => void;
-  onNavigateToProducts?: (filter?: any) => void;
+  onNavigateToProducts?: (filter?: ProductFilter) => void;
 }
 
 export const AboutPage: React.FC<AboutPageProps> = () => {
@@ -71,4 +72,3 @@ export const AboutPage: React.FC<AboutPageProps> = () => {
     </div>
   );
 };
-

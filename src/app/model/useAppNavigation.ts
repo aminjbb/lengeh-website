@@ -3,13 +3,16 @@
 import { useEffect, useMemo, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { ALL_PRODUCTS } from '../../entities/product';
-import type { Product } from '../../types';
+import type { Product, ProductFilter as SharedProductFilter } from '../../types';
 
 export type AppView = 'home' | 'products' | 'product-detail' | 'about' | 'contact' | 'profile' | 'checkout' | 'collection-story';
-export type ProductFilter = { gender?: 'all' | 'men' | 'women'; collection?: string; category?: string; badge?: string };
+export type ProductFilter = SharedProductFilter;
 export type ProfileSubView = 'menu' | 'orders' | 'wishlist' | 'addresses' | 'personal-info';
 
-export function useAppNavigation() {
+const isGender = (value: string | null): ProductFilter['gender'] =>
+  value === 'men' || value === 'women' ? value : 'all';
+
+export function useAppNavigation(options: { routeProductId?: string } = {}) {
   const router = useRouter();
   const pathname = usePathname();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(ALL_PRODUCTS[0] ?? null);
@@ -31,7 +34,7 @@ export function useAppNavigation() {
     if (currentView !== 'products') return;
     const params = new URLSearchParams(window.location.search);
     setProductFilter({
-      gender: (params.get('gender') as ProductFilter['gender']) || 'all',
+      gender: isGender(params.get('gender')),
       collection: params.get('collection') || 'all',
       category: params.get('category') || 'all',
       badge: params.get('badge') || undefined,
@@ -39,9 +42,9 @@ export function useAppNavigation() {
   }, [currentView, pathname]);
 
   const routeProduct = useMemo(() => {
-    const id = pathname.startsWith('/products/') ? pathname.split('/')[2] : undefined;
+    const id = options.routeProductId ?? (pathname.startsWith('/products/') ? pathname.split('/')[2] : undefined);
     return id ? ALL_PRODUCTS.find((product) => product.id === decodeURIComponent(id)) : undefined;
-  }, [pathname]);
+  }, [options.routeProductId, pathname]);
 
   const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
   const goHome = () => { router.push('/'); scrollTop(); };

@@ -1,0 +1,10 @@
+{
+  "format": "fagent.agent-definition",
+  "format_version": "1.0.0",
+  "metadata": {"id":"security","name":"@security","version":"1.0.0","description":"Security lead for Next.js data access, authentication, sessions, server boundaries, headers, secrets, and OWASP review.","target_domain":"Next.js App Router + React Server Components + Server Actions + TypeScript/JavaScript"},
+  "integration": {"type":"declarative","entry_manifest":"frontend.entry.json","compatibility":"FAgent manifest; requires a host loader or adapter.","path_base":"directory containing this manifest","target_project":"Resolve from the assigned task.","loader_contract":["Read the linked instruction and selected skill fully.","Default to read-only review; activation grants no installation, deployment, or external-write authority.","Verify effective runtime/configuration rather than relying on intended settings."]},
+  "instruction": {"path":"prompts/security.md","required":true,"role":"agent_instruction","authority":"Canonical security policy subordinate to host and user instructions."},
+  "skills":[{"id":"security-review","path":"skills/security/security-review/SKILL.md","when":"Review or implement security controls in a Next.js App Router project.","mode":"read_only_unless_remediation_authorized"}],
+  "activation":{"intake_agent":"@tech-lead","routing_role":"security_review_and_hardening","explicit_mentions":["@security","security agent","امنیت پروژه"],"automatic_routing":{"enabled":true,"context_gate":"The request concerns application security, auth, sessions, Server Actions, DAL, CSP, secrets, cookies, caching, middleware, XSS, CSRF, rate limiting, or OWASP.","keyword_hints":["security","authentication","session","CSP","nonce","CSRF","XSS","secret","cookie","OWASP","امنیت","احراز هویت","نشست"]}},
+  "execution":{"selection":"Load security-review and only the relevant reference sections.","verification":"Require concrete source/config evidence and rerun applicable checks after authorized fixes."}
+}

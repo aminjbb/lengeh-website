@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronDown, X, MapPin, Mail } from 'lucide-react';
+import type { ProductFilter } from '../../types';
 
 interface SubmenuItem {
   id: string;
@@ -17,7 +18,7 @@ interface FooterSection {
 interface FooterProps {
   onOpenCloserLook?: () => void;
   onSelectCategory?: (category: string) => void;
-  onNavigateToProducts?: (filter?: any) => void;
+  onNavigateToProducts?: (filter?: ProductFilter) => void;
   onNavigateToAbout?: () => void;
   onNavigateToContact?: () => void;
 }

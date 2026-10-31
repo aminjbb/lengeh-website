@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Product, Currency } from '../../../types';
 
 export function useAppShellUi() {
@@ -13,6 +13,7 @@ export function useAppShellUi() {
   const [currency, setCurrency] = useState<Currency>('EUR');
   const [isScrolled, setIsScrolled] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const toastTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 40);
@@ -20,9 +21,17 @@ export function useAppShellUi() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => () => {
+    if (toastTimerRef.current !== null) window.clearTimeout(toastTimerRef.current);
+  }, []);
+
   const showToast = useCallback((message: string) => {
+    if (toastTimerRef.current !== null) window.clearTimeout(toastTimerRef.current);
     setToastMessage(message);
-    window.setTimeout(() => setToastMessage((current) => current === message ? null : current), 3000);
+    toastTimerRef.current = window.setTimeout(() => {
+      setToastMessage((current) => current === message ? null : current);
+      toastTimerRef.current = null;
+    }, 3000);
   }, []);
 
   return {

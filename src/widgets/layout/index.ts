@@ -4,6 +4,7 @@ export * from './Footer';
 export * from './NavigationDrawer';
 export * from './CartDrawer';
 export * from './CloserLookModal';
-export { QuickViewModal } from '../../features/product-interaction/ui/QuickViewModal';
-export { SearchModal } from '../../features/product-search/ui/SearchModal';
+export { QuickViewModal } from '../../features/product-interaction';
+export { SearchModal } from '../../features/product-search';
+export { useAppShellUi } from './model';
 

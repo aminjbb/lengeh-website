@@ -1,10 +1,11 @@
 import React from 'react';
+import type { ProductFilter } from '../../types';
 import { ChevronLeft, Check, Copy, Clock } from 'lucide-react';
 import { useContactPage } from './model/useContactPage';
 
 interface ContactPageProps {
   onNavigateHome?: () => void;
-  onNavigateToProducts?: (filter?: any) => void;
+  onNavigateToProducts?: (filter?: ProductFilter) => void;
 }
 
 interface FaqItem {
@@ -370,4 +371,3 @@ export const ContactPage: React.FC<ContactPageProps> = ({
     </div>
   );
 };
-

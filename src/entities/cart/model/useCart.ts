@@ -5,6 +5,17 @@ import type { Product, CartItem } from '../../../types';
 
 const STORAGE_KEY = 'kith_cart';
 
+function isCartItem(value: unknown): value is CartItem {
+  if (!value || typeof value !== 'object') return false;
+  const item = value as Partial<CartItem>;
+  const product = item.product;
+  return Boolean(
+    product && typeof product === 'object' && typeof product.id === 'string' &&
+      typeof item.selectedSize === 'string' && item.selectedSize.length > 0 &&
+      typeof item.quantity === 'number' && Number.isFinite(item.quantity) && item.quantity > 0,
+  );
+}
+
 /** Owns cart persistence and transitions so screens only consume a cart contract. */
 export function useCart() {
   const [items, setItems] = useState<CartItem[]>([]);
@@ -13,7 +24,10 @@ export function useCart() {
   useEffect(() => {
     try {
       const saved = window.localStorage.getItem(STORAGE_KEY);
-      if (saved) setItems(JSON.parse(saved) as CartItem[]);
+      if (saved) {
+        const parsed: unknown = JSON.parse(saved);
+        if (Array.isArray(parsed)) setItems(parsed.filter(isCartItem));
+      }
     } catch {
       // Corrupt or unavailable browser storage falls back to an empty cart.
     }

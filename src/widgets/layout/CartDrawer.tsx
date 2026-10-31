@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CartItem } from '../../types';
 import { X, Trash, Plus, Minus, ArrowRight, ShieldCheck, ShoppingBag, Check } from '@mynaui/icons-react';
 import { toPersianDigits, formatTomanPrice } from '../../utils/persianNumbers';
+import { ResponsiveImage } from '../../shared/ui/design-system';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -161,7 +162,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
               >
                 {/* تصویر محصول در سمت راست */}
                 <div className="w-20 h-28 bg-neutral-100 overflow-hidden flex-shrink-0 border border-neutral-200">
-                  <img
+                  <ResponsiveImage
                     src={item.product.image}
                     alt={item.product.name}
                     referrerPolicy="no-referrer"

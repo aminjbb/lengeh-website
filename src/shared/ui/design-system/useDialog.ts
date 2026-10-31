@@ -4,12 +4,14 @@ import { useEffect, useId, useRef } from 'react';
 
 export function useDialog(open: boolean, onClose: () => void) {
   const titleId = useId();
-  const panelRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLElement | null>(null);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
   useEffect(() => {
     if (!open) return;
     const previous = document.activeElement as HTMLElement | null;
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose();
+      if (event.key === 'Escape') onCloseRef.current();
       if (event.key === 'Tab' && panelRef.current) {
         const focusable = panelRef.current.querySelectorAll<HTMLElement>('button,a,input,select,textarea,[tabindex]:not([tabindex="-1"])');
         if (!focusable.length) return;
@@ -22,6 +24,6 @@ export function useDialog(open: boolean, onClose: () => void) {
     document.addEventListener('keydown', onKeyDown);
     panelRef.current?.querySelector<HTMLElement>('button,input,[tabindex]:not([tabindex="-1"])')?.focus();
     return () => { document.removeEventListener('keydown', onKeyDown); previous?.focus(); };
-  }, [open, onClose]);
+  }, [open]);
   return { panelRef, titleId };
 }

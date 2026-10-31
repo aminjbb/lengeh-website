@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import type { ProductFilter } from '../../types';
 import { ShoppingBag, Heart, LogOut, ArrowRight, ArrowLeft, ChevronLeft, User as UserIcon, Plus, Trash2, Edit3, Check, Package } from 'lucide-react';
 import { Product, UserOrder } from '../../types';
 import { ALL_PRODUCTS } from '../../data/mockData';
@@ -16,7 +17,7 @@ interface ProfilePageProps {
   onUpdateUserName: (name: string) => void;
   onLogout: () => void;
   onNavigateHome: () => void;
-  onNavigateToProducts: (filter?: any) => void;
+  onNavigateToProducts: (filter?: ProductFilter) => void;
   garderobIds: string[];
   onOpenProductDetail: (product: Product) => void;
   onToggleGarderob?: (product: Product) => void;

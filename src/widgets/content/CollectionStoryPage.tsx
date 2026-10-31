@@ -1,11 +1,12 @@
 import React from 'react';
+import type { ProductFilter } from '../../types';
 import { ChevronLeft, ArrowRight, ShieldCheck, Award, Sparkles, Feather, FileText, CheckCircle2, Bookmark, Box, Eye, Layers } from 'lucide-react';
 import { toPersianDigits } from '../../utils/persianNumbers';
 import { useCollectionStoryPage } from './model/useCollectionStoryPage';
 
 interface CollectionStoryPageProps {
   onNavigateHome: () => void;
-  onNavigateToProducts: (filter?: any) => void;
+  onNavigateToProducts: (filter?: ProductFilter) => void;
 }
 
 export const CollectionStoryPage: React.FC<CollectionStoryPageProps> = ({
@@ -469,4 +470,3 @@ export const CollectionStoryPage: React.FC<CollectionStoryPageProps> = ({
     </div>
   );
 };
-

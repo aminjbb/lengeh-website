@@ -3,7 +3,7 @@ import { Product } from '../../types';
 import { ProductCard } from '../../features/product-interaction/ui/ProductCard';
 import { CATEGORIES } from '../../data/mockData';
 import { ArrowUpDown } from '@mynaui/icons-react';
-import { useProductGrid } from '../../features/catalog-filter/model/useProductGrid';
+import { useProductGrid, type SortOption } from '../../features/catalog-filter/model/useProductGrid';
 import { SectionHeading } from '../../shared/ui';
 
 interface ProductGridProps {
@@ -60,7 +60,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({
           <ArrowUpDown className="w-3.5 h-3.5" />
           <select
             value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as any)}
+            onChange={(e) => setSortBy(e.target.value as SortOption)}
             className="bg-transparent text-neutral-800 font-medium text-xs border-none focus:outline-none cursor-pointer uppercase tracking-wider"
           >
             <option value="featured">Sort: Featured</option>
