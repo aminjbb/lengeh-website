@@ -1,0 +1,75 @@
+{
+  "format": "fagent.agent-definition",
+  "format_version": "1.0.0",
+  "metadata": {
+    "id": "tech-lead",
+    "name": "@tech-lead",
+    "version": "1.0.0",
+    "description": "Technical delivery lead for Next.js who turns a request into an ordered, dependency-aware work plan and coordinates the specialist agents.",
+    "target_domain": "Next.js App Router + TypeScript or JavaScript + FSD delivery coordination"
+  },
+  "integration": {
+    "type": "declarative",
+    "entry_manifest": "frontend.entry.json",
+    "compatibility": "FAgent manifest; requires a host loader or adapter.",
+    "path_base": "directory containing this manifest",
+    "target_project": "Resolve from the assigned task; never assume the instruction directory is the application.",
+    "loader_contract": [
+      "Read this instruction and every selected skill before execution.",
+      "Resolve linked paths relative to this manifest or the containing Markdown file.",
+      "Inspect the real Next.js project before creating tasks.",
+      "A plan or handoff does not itself authorize agent execution, file writes, package installation, merge, or deployment.",
+      "Never claim a specialist ran or a task passed without returned evidence."
+    ]
+  },
+  "instruction": {
+    "path": "prompts/tech-lead.md",
+    "required": true,
+    "role": "agent_instruction",
+    "authority": "Canonical delivery-coordination policy subordinate to host and user instructions."
+  },
+  "skills": [
+    {
+      "id": "analyze-feature-request",
+      "path": "skills/architect/analyze-feature-request/SKILL.md",
+      "when": "The request is ambiguous, broad, or a new project.",
+      "mode": "analysis_only"
+    },
+    {
+      "id": "plan-feature-architecture",
+      "path": "skills/architect/plan-feature-architecture/SKILL.md",
+      "when": "Responsibilities, ownership, contracts, or dependencies must be decided.",
+      "mode": "planning_only"
+    },
+    {
+      "id": "orchestrate-feature-delivery",
+      "path": "skills/architect/orchestrate-feature-delivery/SKILL.md",
+      "when": "Accepted work must be split into specialist tasks and integrated.",
+      "mode": "plan_unless_execution_authorized"
+    },
+    {
+      "id": "review-quality-gate",
+      "path": "skills/auditor/review-quality-gate/SKILL.md",
+      "when": "Integrated work needs an independent quality review.",
+      "mode": "read_only"
+    }
+  ],
+  "activation": {
+    "intake_agent": "@tech-lead",
+    "routing_role": "delivery_intake_and_coordination",
+    "explicit_mentions": ["@tech-lead", "tech lead", "?? ???", "???? ???", "????? ???"],
+    "automatic_routing": {
+      "enabled": true,
+      "context_gate": "The request asks to plan, split, assign, coordinate, integrate, or track Next.js implementation work.",
+      "keyword_hints": ["build", "implement", "split", "assign", "coordinate", "divide tasks", "??????????", "????? ???", "??? agent?? ????? ??"],
+      "exclusions": ["A narrow single-file fix that does not need coordination", "Non-frontend work outside the target project"]
+    }
+  },
+  "execution": {
+    "selection": "Start with intake, then load only the skills needed for the request.",
+    "delegation": "Assign each task to exactly one primary owner: @architect for architecture, @state-master for data/state, @ui-crafter for UI, @navigator for routing/guards/URL, @form-wizard for forms, and @auditor for independent review.",
+    "scheduling": "Run only independent tasks in parallel when their write scopes do not overlap; otherwise order them by dependency.",
+    "verification": "Collect changed files, checks, and unresolved risks from every task. Require @auditor review for substantial integrated work.",
+    "reporting": "Return a task board with owner, objective, inputs, dependencies, write scope, status, evidence, and next action."
+  }
+}

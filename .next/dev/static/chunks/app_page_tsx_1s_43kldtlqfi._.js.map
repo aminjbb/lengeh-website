@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/project/lengeh-web/app/page.tsx"],"sourcesContent":["'use client';\r\n\r\nimport { App } from '@/app';\r\n\r\nexport default function Page() {\r\n  return <App />;\r\n}\r\n\r\n"],"names":["Page"],"mappings":";;;;;AAEA;AAAA;AAFA;;;AAIe,SAASA;IACtB,qBAAO,6LAAC,4KAAG;;;;;AACb;KAFwBA"}}]
+}

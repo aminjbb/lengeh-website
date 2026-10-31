@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+@theme {
+  --color-black: #171717;
+}
+
+/* Yekan Bakh (یکان بخ) Local Font Faces */
+@font-face {
+  font-family: 'YekanBakh';
+  src: url('/fonts/yekan-bakh/YekanBakhFaNum-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'YekanBakh';
+  src: url('/fonts/yekan-bakh/YekanBakhFaNum-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'YekanBakh';
+  src: url('/fonts/yekan-bakh/YekanBakhFaNum-SemiBold.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'YekanBakh';
+  src: url('/fonts/yekan-bakh/YekanBakhFaNum-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'YekanBakh';
+  src: url('/fonts/yekan-bakh/YekanBakhFaNum-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'YekanBakh';
+  src: url('/fonts/yekan-bakh/YekanBakhFaNum-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'YekanBakh';
+  src: url('/fonts/yekan-bakh/YekanBakhFaNum-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Alias 'Yekan Bakh' */
+@font-face {
+  font-family: 'Yekan Bakh';
+  src: url('/fonts/yekan-bakh/YekanBakhFaNum-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Yekan Bakh';
+  src: url('/fonts/yekan-bakh/YekanBakhFaNum-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Yekan Bakh';
+  src: url('/fonts/yekan-bakh/YekanBakhFaNum-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tommy';
+  src: url('/fonts/Tommy-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tommy';
+  src: url('/fonts/Tommy-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Tommy';
+  src: url('/fonts/Tommy-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  *, ::before, ::after {
+    font-family: 'YekanBakh', 'Yekan Bakh', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  html {
+    scroll-behavior: smooth;
+    font-family: 'YekanBakh', 'Yekan Bakh', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    direction: rtl;
+  }
+  body {
+    font-family: 'YekanBakh', 'Yekan Bakh', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  input, button, textarea, select {
+    font-family: inherit;
+  }
+}
+
+.font-tommy {
+  font-family: 'YekanBakh', 'Yekan Bakh', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.font-serif-editorial {
+  font-family: 'YekanBakh', 'Yekan Bakh', 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-serif-refined {
+  font-family: 'YekanBakh', 'Yekan Bakh', 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-kith-sans {
+  font-family: 'YekanBakh', 'Yekan Bakh', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Custom scrollbar for lookbooks and cart drawers */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(160, 150, 140, 0.4);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(160, 150, 140, 0.7);
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Lengeh website",
+  "description": "Mobile-first e-commerce shop home page featuring the LENGEH Fall Collection, quality daily wear bridging the gap between sterile basics and loud graphics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
